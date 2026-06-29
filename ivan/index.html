@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотограф Иван — свадебная и портретная съёмка</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="#" class="logo">Иван <span>Фото</span></a>
+            <nav class="nav">
+                <a href="#portfolio">Портфолио</a>
+                <a href="#services">Услуги</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero__overlay"></div>
+            <div class="hero__content">
+                <h1>Запечатлею вашу историю</h1>
+                <p>Свадебная, портретная и лавстори съёмка в Москве и области</p>
+                <a href="#portfolio" class="btn">Смотреть портфолио</a>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section portfolio">
+            <div class="container">
+                <h2>Портфолио</h2>
+                <div class="gallery" id="gallery">
+                    <!-- JS заполнит -->
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section services">
+            <div class="container">
+                <h2>Услуги</h2>
+                <div class="services__grid">
+                    <div class="service-card">
+                        <h3>Свадебная съёмка</h3>
+                        <p>Полный день, 300+ обработанных фото, запись церемонии и прогулки</p>
+                        <span class="price">25 000 ₽</span>
+                    </div>
+                    <div class="service-card">
+                        <h3>Портретная съёмка</h3>
+                        <p>Индивидуальная или семейная, 1–2 часа, 50+ фото в ретуши</p>
+                        <span class="price">8 000 ₽</span>
+                    </div>
+                    <div class="service-card">
+                        <h3>Love story</h3>
+                        <p>Романтическая история в любимых местах, 2 часа, 70+ снимков</p>
+                        <span class="price">10 000 ₽</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2>Свяжитесь со мной</h2>
+                <div class="contact__grid">
+                    <form id="contactForm" class="contact__form">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="tel" id="phone" placeholder="Телефон" required>
+                        <textarea id="message" rows="4" placeholder="Сообщение"></textarea>
+                        <button type="submit" class="btn">Отправить</button>
+                    </form>
+                    <div class="contact__info">
+                        <p>📞 +7 (916) 123-45-67</p>
+                        <p>📧 ivan@photo.ru</p>
+                        <p>📍 Москва, выезд по области</p>
+                        <p>🕒 Съёмка ежедневно, обработка — до 5 дней</p>
+                    </div>
+                </div>
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox__close" id="lightboxClose">&times;</span>
+        <img id="lightboxImg" src="" alt="">
+        <p id="lightboxCaption"></p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© Фотограф Иван, 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

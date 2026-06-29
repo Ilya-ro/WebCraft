@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Смак — доставка готовой еды на неделю</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="#" class="logo">🍲 Смак</a>
+            <nav class="nav">
+                <a href="#menu">Меню</a>
+                <a href="#sale">Акция</a>
+                <a href="#order">Заказ</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <!-- Кнопка корзины -->
+            <button class="cart-btn" id="cartBtn">
+                🛒 <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <h1>Доставка готовой еды на неделю</h1>
+                <p>Готовим с душой, упаковываем и привозим к вашему столу</p>
+                <a href="#menu" class="btn">Смотреть меню</a>
+            </div>
+        </section>
+
+        <!-- Меню -->
+        <section id="menu" class="section menu">
+            <div class="container">
+                <h2>Популярные блюда</h2>
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Карточки будут вставлены через JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Акция -->
+        <section id="sale" class="section sale">
+            <div class="container">
+                <h2>Скидка 20% на первый заказ!</h2>
+                <p>Бесплатная доставка при заказе от 5 блюд</p>
+                <a href="#menu" class="btn btn-inverse">Выбрать блюда</a>
+            </div>
+        </section>
+
+        <!-- Форма заказа -->
+        <section id="order" class="section order">
+            <div class="container">
+                <h2>Оформите заказ</h2>
+                <form id="orderForm" class="form">
+                    <div class="form__col">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="tel" id="phone" placeholder="Телефон" required>
+                    </div>
+                    <div class="form__col">
+                        <input type="text" id="address" placeholder="Адрес доставки" required>
+                        <textarea id="comment" rows="3" placeholder="Пожелания"></textarea>
+                    </div>
+                    <button type="submit" class="btn form__btn">Отправить заявку</button>
+                </form>
+                <div id="orderMessage" class="form-message"></div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="section contacts">
+            <div class="container">
+                <h2>Контакты</h2>
+                <div class="contacts__grid">
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <p>ул. Вкусная, 10, Москва</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <p>+7 (495) 765-43-21</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🕒</span>
+                        <p>Ежедневно с 8:00 до 20:00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно корзины -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal__content">
+            <span class="cart-modal__close" id="cartClose">&times;</span>
+            <h2>Корзина</h2>
+            <div id="cartItems" class="cart-items">
+                <!-- Список блюд -->
+            </div>
+            <div class="cart-total">
+                Итого: <span id="cartTotal">0</span> ₽
+            </div>
+            <button class="btn cart-order-btn" id="cartOrderBtn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© Смак, 2025. Вкусно как дома!</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

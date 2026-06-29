@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТехноБум — интернет-магазин электроники</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <a href="#" class="logo">⚡ ТехноБум</a>
+            <nav class="nav">
+                <a href="#catalog">Каталог</a>
+                <a href="#order">Оформить</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <button class="cart-btn" id="cartBtn">
+                🛒 Корзина <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Выезжающая панель корзины -->
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-panel__header">
+            <h2>Корзина</h2>
+            <button class="cart-panel__close" id="cartPanelClose">&times;</button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-panel__footer">
+            <div class="cart-total">Итого: <span id="cartTotal">0</span> ₽</div>
+            <button class="btn cart-order-btn" id="cartOrderBtn">Оформить</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Гаджеты будущего — уже сегодня</h1>
+                <p>Новинки, эксклюзивы и всё для продвинутых</p>
+                <a href="#catalog" class="btn">Смотреть товары</a>
+            </div>
+        </section>
+
+        <section id="catalog" class="section catalog">
+            <div class="container">
+                <h2>Каталог устройств</h2>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Найти товар...">
+                    <span class="search-icon">🔍</span>
+                </div>
+                <div class="table-wrapper">
+                    <table class="catalog-table" id="catalogTable">
+                        <thead>
+                            <tr>
+                                <th>Товар</th>
+                                <th>Описание</th>
+                                <th>Цена</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="catalogBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="order" class="section order">
+            <div class="container">
+                <h2>Оформление заказа</h2>
+                <form id="orderForm" class="form">
+                    <input type="text" id="name" placeholder="Ваше имя" required>
+                    <input type="tel" id="phone" placeholder="Телефон" required>
+                    <input type="text" id="address" placeholder="Адрес доставки" required>
+                    <textarea id="comment" rows="3" placeholder="Комментарий"></textarea>
+                    <button type="submit" class="btn">Отправить заказ</button>
+                </form>
+                <div id="orderMessage" class="form-message"></div>
+            </div>
+        </section>
+
+        <section id="contacts" class="section contacts">
+            <div class="container">
+                <h2>Контакты</h2>
+                <div class="contacts__grid">
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <p>ул. Техническая, 10, Москва</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <p>+7 (495) 765-43-21</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🕒</span>
+                        <p>Ежедневно с 9:00 до 21:00</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© ТехноБум, 2025</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

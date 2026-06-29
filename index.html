@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCraft.Ilya — создание сайтов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a1128;
+    color: #e0e7ff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Базовые анимации */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+/* Элементы по умолчанию скрыты для анимации */
+[data-animate] {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-animate].animated {
+    opacity: 1;
+}
+.fade-up { transform: translateY(30px); }
+.fade-left { transform: translateX(-30px); }
+.fade-right { transform: translateX(30px); }
+.scale-in { transform: scale(0.9); }
+.fade-up.animated { transform: translateY(0); }
+.fade-left.animated { transform: translateX(0); }
+.fade-right.animated { transform: translateX(0); }
+.scale-in.animated { transform: scale(1); }
+
+/* Шапка */
+header {
+    background: #0f1832;
+    border-bottom: 1px solid #1e2a4a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.logo .highlight {
+    color: #3b82f6;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+}
+
+nav a {
+    color: #b0c4ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #3b82f6;
+}
+
+/* Главный экран */
+.hero {
+    padding: 120px 0 100px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #60a5fa, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    padding: 14px 38px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    animation: none;
+}
+
+/* Заголовки секций */
+.services h2, .works h2, .reviews h2, .leave-review h2, .order h2, .contacts h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #fff;
+    position: relative;
+}
+
+.services h2::after, .works h2::after, .reviews h2::after, .leave-review h2::after, .order h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #3b82f6;
+    margin: 12px auto 0;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+}
+.services h2.animated::after,
+.works h2.animated::after,
+.reviews h2.animated::after,
+.leave-review h2.animated::after,
+.order h2.animated::after {
+    transform: scaleX(1);
+}
+
+/* Услуги */
+.services {
+    padding: 80px 0;
+}
+
+.services-grid {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.service-card {
+    background: #141f3a;
+    border: 1px solid #1e2a4a;
+    border-radius: 16px;
+    padding: 30px 25px;
+    flex: 1 1 250px;
+    max-width: 320px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(59,130,246,0.3);
+}
+
+.service-card .icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.service-card p {
+    color: #b0c4ff;
+    font-size: 0.95rem;
+}
+
+/* ПОРТФОЛИО */
+.works {
+    padding: 80px 0;
+    background: #0d1530;
+}
+
+.works-filter {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: #141f3a;
+    border: 1px solid #1e2a4a;
+    color: #b0c4ff;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(37,99,235,0.5);
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.work-card {
+    background: #141f3a;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #1e2a4a;
+    transition: transform 0.4s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+}
+
+.work-card.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work-card:hover {
+    transform: translateY(-8px) !important;
+    border-color: #3b82f6;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+}
+
+.work-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    background: #1c2a4f;
+}
+
+.work-card .work-info {
+    padding: 20px;
+}
+
+.work-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.work-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.work-tag {
+    background: #1e2a4a;
+    color: #b0c4ff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: #141f3a;
+    border: 1px solid #1e2a4a;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    animation: modalIn 0.4s ease;
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.8) translateY(-20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: rgba(0,0,0,0.9);
+}
+
+.modal-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.modal-slider img {
+    width: 100%;
+    border-radius: 12px;
+    max-height: 300px;
+    object-fit: cover;
+}
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    font-size: 1.8rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: background 0.2s, opacity 0.2s;
+}
+.slider-arrow:hover {
+    background: rgba(0,0,0,0.85);
+    opacity: 1;
+}
+.prev-slide { left: 6px; }
+.next-slide { right: 6px; }
+.modal-dots {
+    margin-top: 10px;
+}
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.dot.active {
+    background: #2563eb;
+}
+
+.modal-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+.modal-content p {
+    color: #b0c4ff;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Отзывы */
+.reviews {
+    padding: 80px 0;
+    background: #0d1530;
+}
+
+.reviews-grid {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.review-card {
+    background: #141f3a;
+    border: 1px solid #1e2a4a;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    flex: 1 1 280px;
+    max-width: 350px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+    border-color: #3b82f6;
+}
+
+.stars {
+    color: #fbbf24;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+}
+
+.review-card .text {
+    font-size: 1.05rem;
+    color: #e0e7ff;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* Оставить отзыв */
+.leave-review {
+    padding: 80px 0;
+}
+
+.review-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.rating-input {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #e0e7ff;
+    font-weight: 600;
+}
+
+.stars-input {
+    display: flex;
+    gap: 5px;
+}
+
+.star-label {
+    font-size: 2rem;
+    color: #2d3a5c;
+    cursor: pointer;
+    transition: color 0.15s, transform 0.2s;
+    user-select: none;
+}
+
+.star-label.active,
+.star-label.hover {
+    color: #fbbf24;
+    transform: scale(1.2);
+}
+
+.review-form input,
+.review-form textarea {
+    background: #141f3a;
+    border: 1px solid #1e2a4a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px rgba(59,130,246,0.4);
+}
+
+.review-form textarea {
+    resize: vertical;
+}
+
+.form-message {
+    text-align: center;
+    font-weight: 600;
+    margin-top: 20px;
+    min-height: 24px;
+}
+
+/* Форма заказа */
+.order {
+    padding: 80px 0;
+    background: #0f1832;
+}
+
+.order-sub {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 40px;
+}
+
+.order-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-row {
+    display: flex;
+    gap: 18px;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.order-form input,
+.order-form select,
+.order-form textarea {
+    background: #141f3a;
+    border: 1px solid #1e2a4a;
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.order-form input:focus,
+.order-form select:focus,
+.order-form textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px rgba(59,130,246,0.4);
+}
+
+.order-form textarea {
+    resize: vertical;
+}
+
+/* Контакты */
+.contacts {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.contacts p {
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+.small {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-top: 10px;
+}
+
+/* Подвал */
+footer {
+    background: #060c1a;
+    text-align: center;
+    padding: 20px 0;
+    color: #6b7a99;
+    font-size: 0.9rem;
+    border-top: 1px solid #1e2a4a;
+}
+
+@media (max-width: 700px) {
+    .form-row {
+        flex-direction: column;
+    }
+    nav ul {
+        gap: 15px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-bar">
+            <div class="logo">WebCraft<span class="highlight">.Ilya</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#works">Портфолио</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#order">Заказать</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Сайты, которые приносят клиентов</h1>
+                <p class="subtitle">Разработка под ключ: лендинги, магазины, сайты-визитки. Без шаблонной мути, с душой и конверсией.</p>
+                <a href="#order" class="btn-primary">Обсудить проект</a>
+            </div>
+        </section>
+
+        <section id="services" class="services" data-animate="fade-up">
+            <div class="container">
+                <h2>Что мы делаем</h2>
+                <div class="services-grid">
+                    <div class="service-card" data-animate="scale-in" style="transition-delay: 0.1s">
+                        <span class="icon">🚀</span>
+                        <h3>Лендинг</h3>
+                        <p>Одностраничный сайт для быстрого старта. Текст, форма захвата, скорость — всё на максимум.</p>
+                    </div>
+                    <div class="service-card" data-animate="scale-in" style="transition-delay: 0.2s">
+                        <span class="icon">🛒</span>
+                        <h3>Интернет-магазин</h3>
+                        <p>Удобный каталог, корзина, приём платежей. Подключим всё, что нужно для продаж.</p>
+                    </div>
+                    <div class="service-card" data-animate="scale-in" style="transition-delay: 0.3s">
+                        <span class="icon">📇</span>
+                        <h3>Сайт-визитка</h3>
+                        <p>Небольшой сайт с информацией о Вас или компании. Портфолио, контакты, карта проезда — всё что нужно для первого впечатления.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ПОРТФОЛИО -->
+        <section id="works" class="works" data-animate="fade-up">
+            <div class="container">
+                <h2>Портфолио</h2>
+                <div class="works-filter">
+                    <button class="filter-btn active" data-filter="all">Все</button>
+                    <button class="filter-btn" data-filter="Лендинг">Лендинги</button>
+                    <button class="filter-btn" data-filter="Интернет-магазин">Магазины</button>
+                    <button class="filter-btn" data-filter="Сайт-визитка">Визитки</button>
+                </div>
+                <div id="worksGrid" class="works-grid">
+                    <!-- Карточки заполнятся из JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальное окно для проекта -->
+        <div id="projectModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <div class="modal-slider">
+                    <button class="slider-arrow prev-slide">‹</button>
+                    <img id="modalImage" src="" alt="Скриншот проекта">
+                    <button class="slider-arrow next-slide">›</button>
+                </div>
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+                <a id="modalLink" href="#" target="_blank" class="btn-primary">Посмотреть сайт</a>
+                <div class="modal-dots" id="modalDots"></div>
+            </div>
+        </div>
+
+        <section id="reviews" class="reviews" data-animate="fade-up">
+            <div class="container">
+                <h2>Что говорят клиенты</h2>
+                <div id="reviewsContainer" class="reviews-grid">
+                    <!-- Карточки появятся через JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="leave-review" class="leave-review" data-animate="fade-up">
+            <div class="container">
+                <h2>Оставьте Ваш отзыв</h2>
+                <form id="reviewForm" class="review-form">
+                    <div class="form-row">
+                        <input type="text" id="reviewName" placeholder="Ваше имя" required>
+                        <input type="email" id="reviewEmail" placeholder="Email (не публикуется)" required>
+                    </div>
+                    <div class="rating-input">
+                        <span>Оценка:</span>
+                        <div class="stars-input" id="starsInput">
+                            <label class="star-label" data-value="1">★</label>
+                            <label class="star-label" data-value="2">★</label>
+                            <label class="star-label" data-value="3">★</label>
+                            <label class="star-label" data-value="4">★</label>
+                            <label class="star-label" data-value="5">★</label>
+                        </div>
+                        <input type="hidden" id="reviewRating" value="0" required>
+                    </div>
+                    <textarea id="reviewText" rows="4" placeholder="Поделитесь впечатлениями" required></textarea>
+                    <button type="submit" class="btn-primary">Отправить отзыв</button>
+                </form>
+                <div id="reviewFormMessage" class="form-message"></div>
+            </div>
+        </section>
+
+        <section id="order" class="order" data-animate="fade-up">
+            <div class="container">
+                <h2>Готовы начать?</h2>
+                <p class="order-sub">Заполните форму — обсудим детали и сроки.</p>
+                <form id="orderForm" class="order-form">
+                    <div class="form-row">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="tel" id="phone" placeholder="Ваш номер телефона" required>
+                    </div>
+                    <select id="serviceType" required>
+                        <option value="" disabled selected>Тип сайта</option>
+                        <option value="Лендинг">Лендинг</option>
+                        <option value="Интернет-магазин">Интернет-магазин</option>
+                        <option value="Корпоративный сайт">Корпоративный сайт</option>
+                        <option value="Другое">Другое</option>
+                    </select>
+                    <textarea id="details" rows="4" placeholder="Опишите проект или задайте вопрос" required></textarea>
+                    <button type="submit" class="btn-primary">Отправить заявку</button>
+                </form>
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </section>
+
+        <section id="contacts" class="contacts">
+            <div class="container">
+                <h2>Связь с нами</h2>
+                <p>📧 webcraft.ilya@dev.ru<br>📞 +7 (999) 123-45-67</p>
+                <p class="small">Отвечаем в течение пары часов, даже по выходным.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© WebCraft.Ilya, 2025. Делаем сайты, а не воду.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // Твой URL Google Apps Script (отзывы)
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZOgqzUrMATsJlJBG0o0oHx331g1wdjPELGsx0tbWav61S7uuaySAMiNxn5DoDznVd/exec';
+
+    // Твои данные Telegram
+    const TELEGRAM_BOT_TOKEN = '8757221875:AAHM7tYEAf61GhzyX46xx8IHDE6rBFlv6sU';
+    const TELEGRAM_CHAT_ID = '7531728776';
+
+    // ----------------------- АНИМАЦИИ -----------------------
+    const animateElements = document.querySelectorAll('[data-animate]');
+    const observerOptions = { threshold: 0.15 };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    animateElements.forEach(el => observer.observe(el));
+
+    // Анимируем заголовки секций
+    const sectionTitles = document.querySelectorAll('h2');
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, { threshold: 0.5 });
+    sectionTitles.forEach(title => titleObserver.observe(title));
+
+    // ----------------------- ПОРТФОЛИО -----------------------
+    const projects = [
+        {
+            title: 'Смак',
+            type: 'Лендинг',
+            images: [
+                'smak/images/smak.png',
+                'smak/images/smak2.png',
+                'smak/images/smak3.png'
+            ],
+            description: 'Яркий лендинг доставки готовой еды. Конструктор меню, корзина, форма заказа с уведомлением в Telegram. Конверсия – 14%.',
+            link: 'smak/index.html'
+        },
+        {
+            title: 'Фотограф Иван',
+            type: 'Сайт-визитка',
+            images: [
+                'ivan/images/ivan.png',
+                'ivan/images/ivan2.png',
+                'ivan/images/ivan3.png'
+            ],
+            description: 'Сайт-визитка свадебного фотографа. Портфолио с лайтбоксом, услуги и цены, контакты, форма обратной связи. Адаптивный дизайн, быстрая загрузка.',
+            link: 'ivan/index.html'
+        },
+        {
+            title: 'ТехноБум',
+            type: 'Интернет-магазин',
+            images: [
+                'technoboom/images/technoboom.png',
+                'technoboom/images/technoboom2.png',
+                'technoboom/images/technoboom3.png'
+            ],
+            description: 'Интернет-магазин электроники. Каталог с поиском, корзина, оформление заказа. Адаптивная вёрстка, удобная навигация.',
+            link: 'technoboom/index.html'
+        }
+    ];
+
+    const worksGrid = document.getElementById('worksGrid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const modal = document.getElementById('projectModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalLink = document.getElementById('modalLink');
+    const modalClose = document.querySelector('.modal-close');
+    const prevSlideBtn = document.querySelector('.prev-slide');
+    const nextSlideBtn = document.querySelector('.next-slide');
+    const modalDots = document.getElementById('modalDots');
+
+    let currentProject = null;
+    let currentSlide = 0;
+
+    function renderProjects(filterType = 'all') {
+        worksGrid.innerHTML = '';
+        const filtered = filterType === 'all' ? projects : projects.filter(p => p.type === filterType);
+
+        filtered.forEach((project, index) => {
+            const card = document.createElement('div');
+            card.className = 'work-card';
+            card.style.transitionDelay = `${index * 0.1}s`;
+
+            // Показываем первый скрин в карточке
+            const img = document.createElement('img');
+            img.src = project.images[0];
+            img.alt = project.title;
+            img.loading = 'lazy';
+            img.onerror = () => {
+                img.src = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="200" fill="%231c2a4f"%3E%3Crect width="300" height="200"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23fff" font-size="18"%3E${encodeURIComponent(project.title)}%3C/text%3E%3C/svg%3E`;
+            };
+
+            const info = document.createElement('div');
+            info.className = 'work-info';
+            info.innerHTML = `
+                <h3>${project.title}</h3>
+                <p>${project.description.slice(0, 60)}...</p>
+                <div class="work-tags">
+                    <span class="work-tag">${project.type}</span>
+                </div>
+            `;
+
+            card.appendChild(img);
+            card.appendChild(info);
+            card.addEventListener('click', () => openModal(project));
+            worksGrid.appendChild(card);
+        });
+
+        // Запускаем анимацию после отрисовки
+        requestAnimationFrame(() => {
+            document.querySelectorAll('.work-card').forEach(card => {
+                card.classList.add('animated');
+            });
+        });
+    }
+
+    function openModal(project) {
+        currentProject = project;
+        currentSlide = 0;
+        updateModalSlide();
+        modalTitle.textContent = project.title;
+        modalDescription.textContent = project.description;
+        modalLink.href = project.link;
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        renderDots();
+    }
+
+    function closeModal() {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+
+    function updateModalSlide() {
+        if (!currentProject) return;
+        modalImage.src = currentProject.images[currentSlide];
+        modalImage.onerror = () => {
+            modalImage.src = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="400" fill="%231c2a4f"%3E%3Crect width="600" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23fff" font-size="24"%3EИзображение не найдено%3C/text%3E%3C/svg%3E`;
+        };
+    }
+
+    function nextSlide() {
+        if (!currentProject) return;
+        currentSlide = (currentSlide + 1) % currentProject.images.length;
+        updateModalSlide();
+        updateDots();
+    }
+
+    function prevSlide() {
+        if (!currentProject) return;
+        currentSlide = (currentSlide - 1 + currentProject.images.length) % currentProject.images.length;
+        updateModalSlide();
+        updateDots();
+    }
+
+    function renderDots() {
+        if (!modalDots) return;
+        modalDots.innerHTML = '';
+        currentProject.images.forEach((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'dot' + (i === currentSlide ? ' active' : '');
+            dot.addEventListener('click', () => {
+                currentSlide = i;
+                updateModalSlide();
+                updateDots();
+            });
+            modalDots.appendChild(dot);
+        });
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    prevSlideBtn.addEventListener('click', prevSlide);
+    nextSlideBtn.addEventListener('click', nextSlide);
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProjects(btn.dataset.filter);
+        });
+    });
+
+    renderProjects();
+
+    // ----------------------- ОТЗЫВЫ -----------------------
+    const reviewsContainer = document.getElementById('reviewsContainer');
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewMsg = document.getElementById('reviewFormMessage');
+    const starsInput = document.getElementById('starsInput');
+    const ratingHidden = document.getElementById('reviewRating');
+    const starLabels = document.querySelectorAll('.star-label');
+    let selectedRating = 0;
+    let localReviews = JSON.parse(localStorage.getItem('webcraftReviews')) || [];
+
+    async function fetchReviews() {
+        try {
+            const response = await fetch(`${SCRIPT_URL}?action=getReviews`);
+            const data = await response.json();
+            if (Array.isArray(data)) {
+                localStorage.setItem('webcraftReviews', JSON.stringify(data));
+                return data;
+            }
+        } catch (err) {
+            console.warn('Не удалось загрузить отзывы из таблицы, берём локальный кэш');
+        }
+        return localReviews;
+    }
+
+    function renderReviews(reviews) {
+        reviewsContainer.innerHTML = '';
+        if (!reviews || reviews.length === 0) {
+            reviewsContainer.innerHTML = '<p style="text-align:center; color:#94a3b8;">Пока нет отзывов. Будьте первым!</p>';
+            return;
+        }
+        const toShow = reviews.slice(-6).reverse();
+        toShow.forEach(rev => {
+            const card = document.createElement('div');
+            card.className = 'review-card';
+            const stars = '★'.repeat(Number(rev.rating) || 0) + '☆'.repeat(5 - (Number(rev.rating) || 0));
+            const initial = (rev.name || 'А').charAt(0).toUpperCase();
+            const colors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444'];
+            const color = colors[rev.name ? rev.name.length % colors.length : 0];
+            card.innerHTML = `
+                <div class="stars">${stars}</div>
+                <p class="text">«${rev.text}»</p>
+                <div class="author">
+                    <span class="avatar" style="background:${color};">${initial}</span>
+                    <span>${rev.name}</span>
+                </div>
+            `;
+            reviewsContainer.appendChild(card);
+        });
+    }
+
+    (async () => {
+        const reviews = await fetchReviews();
+        renderReviews(reviews);
+    })();
+
+    function highlightStars(maxValue) {
+        starLabels.forEach(label => {
+            const val = parseInt(label.dataset.value);
+            if (val <= maxValue) label.classList.add('hover');
+            else label.classList.remove('hover');
+        });
+    }
+
+    function clearHover() {
+        starLabels.forEach(label => label.classList.remove('hover'));
+        if (selectedRating > 0) {
+            starLabels.forEach(label => {
+                if (parseInt(label.dataset.value) <= selectedRating) label.classList.add('active');
+                else label.classList.remove('active');
+            });
+        } else {
+            starLabels.forEach(label => label.classList.remove('active'));
+        }
+    }
+
+    function setRating(value) {
+        selectedRating = value;
+        ratingHidden.value = value;
+        starLabels.forEach(label => {
+            if (parseInt(label.dataset.value) <= value) label.classList.add('active');
+            else label.classList.remove('active');
+        });
+    }
+
+    starsInput.addEventListener('mouseover', (e) => {
+        const star = e.target.closest('.star-label');
+        if (!star) return;
+        highlightStars(parseInt(star.dataset.value));
+    });
+    starsInput.addEventListener('mouseout', clearHover);
+    starsInput.addEventListener('click', (e) => {
+        const star = e.target.closest('.star-label');
+        if (!star) return;
+        setRating(parseInt(star.dataset.value));
+    });
+
+    reviewForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reviewName').value.trim();
+        const email = document.getElementById('reviewEmail').value.trim();
+        const text = document.getElementById('reviewText').value.trim();
+        const rating = parseInt(ratingHidden.value);
+
+        if (!name || !email || !text || rating === 0) {
+            reviewMsg.textContent = '⚠️ Заполните все поля и выберите оценку.';
+            reviewMsg.style.color = '#f87171';
+            return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+            reviewMsg.textContent = '⚠️ Введите корректный email.';
+            reviewMsg.style.color = '#f87171';
+            return;
+        }
+
+        reviewMsg.textContent = '⏳ Отправляем...';
+        reviewMsg.style.color = '#fbbf24';
+
+        try {
+            const params = new URLSearchParams({
+                action: 'addReview',
+                name, email, rating, text
+            });
+            await fetch(SCRIPT_URL, { method: 'POST', body: params });
+            const updatedReviews = await fetchReviews();
+            renderReviews(updatedReviews);
+            reviewForm.reset();
+            setRating(0);
+            reviewMsg.textContent = '✅ Спасибо! Ваш отзыв опубликован.';
+            reviewMsg.style.color = '#4ade80';
+            setTimeout(() => reviewMsg.textContent = '', 4000);
+        } catch (err) {
+            const newReview = { name, email, rating, text, date: new Date().toISOString() };
+            localReviews.push(newReview);
+            localStorage.setItem('webcraftReviews', JSON.stringify(localReviews));
+            renderReviews(localReviews);
+            reviewForm.reset();
+            setRating(0);
+            reviewMsg.textContent = '⚠️ Не удалось связаться с сервером. Отзыв сохранён локально.';
+            reviewMsg.style.color = '#f59e0b';
+            setTimeout(() => reviewMsg.textContent = '', 5000);
+        }
+    });
+
+    // ----------------------- ФОРМА ЗАКАЗА + ТЕЛЕГРАМ -----------------------
+    const orderForm = document.getElementById('orderForm');
+    const orderMsg = document.getElementById('formMessage');
+
+    async function sendToTelegram(name, phone, service, details) {
+        const text = `📥 *Новая заявка с сайта WebCraft.Ilya*
+👤 Имя: ${name}
+📞 Телефон: ${phone}
+🛠️ Тип: ${service}
+📝 Описание: ${details}`;
+
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: text,
+                parse_mode: 'Markdown'
+            })
+        });
+        const data = await response.json();
+        if (!data.ok) throw new Error(data.description || 'Ошибка Telegram');
+        return true;
+    }
+
+    orderForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('serviceType').value;
+        const details = document.getElementById('details').value.trim();
+
+        const phoneDigits = phone.replace(/\D/g, '');
+        if (!name || !phone || !service || !details) {
+            orderMsg.textContent = '⚠️ Заполните все поля, пожалуйста.';
+            orderMsg.style.color = '#f87171';
+            return;
+        }
+        if (phoneDigits.length < 10) {
+            orderMsg.textContent = '⚠️ Введите корректный номер телефона (минимум 10 цифр).';
+            orderMsg.style.color = '#f87171';
+            return;
+        }
+
+        orderMsg.textContent = '⏳ Отправляем заявку...';
+        orderMsg.style.color = '#fbbf24';
+
+        try {
+            await sendToTelegram(name, phone, service, details);
+            orderMsg.textContent = `✅ ${name}, спасибо! Мы свяжемся с Вами в ближайшее время.`;
+            orderMsg.style.color = '#4ade80';
+            orderForm.reset();
+        } catch (error) {
+            orderMsg.textContent = `⚠️ Ошибка отправки: ${error.message}. Попробуйте позже.`;
+            orderMsg.style.color = '#f87171';
+        }
+        setTimeout(() => orderMsg.textContent = '', 6000);
+    });
+
+    // ----------------------- ПЛАВНЫЙ СКРОЛЛ -----------------------
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#') && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

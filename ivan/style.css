@@ -1,0 +1,456 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #111;
+    word-break: break-word;
+}
+
+/* убрано подчёркивание – оставим как есть */
+
+.btn {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    padding: 14px 34px;
+    border: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    text-decoration: none;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background: #c9a96e;
+    color: #111;
+}
+
+/* Шапка */
+.header {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #c9a96e;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav a {
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.nav a:hover {
+    color: #c9a96e;
+}
+
+/* Hero */
+.hero {
+    height: 90vh;
+    min-height: 500px;
+    background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=800&fit=crop') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    max-width: 700px;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 40px;
+    font-weight: 300;
+    word-break: break-word;
+}
+
+.hero .btn {
+    background: #c9a96e;
+    color: #111;
+    white-space: nowrap;
+}
+
+.hero .btn:hover {
+    background: #fff;
+    color: #111;
+}
+
+/* Секции */
+.section {
+    padding: 80px 0;
+}
+
+/* Портфолио */
+.portfolio {
+    background: #fafafa;
+    overflow: hidden;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: #e0e0e0;
+    border: 1px solid #ddd;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    display: block;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.gallery-item .overlay span {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* Услуги */
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.service-card {
+    border: 1px solid #eee;
+    padding: 40px 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.service-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #111;
+    word-break: break-word;
+}
+
+.service-card p {
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #c9a96e;
+    word-break: break-word;
+}
+
+/* Контакты */
+.contact {
+    background: #fafafa;
+    overflow: hidden;
+}
+
+.contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+}
+
+.contact__form {
+    overflow: hidden;
+    max-width: 100%;
+}
+.contact__form input,
+.contact__form textarea {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+#formMessage,
+.form-message {
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    display: block;
+}
+@media (max-width: 768px) {
+    #formMessage,
+    .form-message {
+        white-space: normal;
+    }
+}
+
+.contact__form input,
+.contact__form textarea {
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    font-size: 1rem;
+    border-radius: 2px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.contact__form input:focus,
+.contact__form textarea:focus {
+    outline: none;
+    border-color: #c9a96e;
+    box-shadow: 0 0 10px rgba(201,169,110,0.2);
+}
+
+.contact__info {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #eee;
+    font-size: 1.1rem;
+    line-height: 2;
+    overflow: hidden;
+}
+
+.contact__info p {
+    margin-bottom: 5px;
+    word-break: break-word;
+}
+
+/* Сообщение формы – защита от расползания */
+#formMessage,
+.form-message {
+    min-height: 24px;
+    max-width: 100%;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+    text-align: center;
+    font-weight: 600;
+    margin: 20px auto 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+/* Лайтбокс */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lightbox__close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.lightbox__close:hover {
+    color: #c9a96e;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.lightbox p {
+    color: #fff;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    max-width: 90%;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Подвал */
+.footer {
+    background: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .contact__grid {
+        grid-template-columns: 1fr;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .nav {
+        gap: 15px;
+    }
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* Запрет растягивания полей влево-вправо */
+textarea {
+    resize: vertical !important;   /* можно только вверх-вниз */
+    max-width: 100% !important;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* На всякий случай ограничим все контейнеры формы */
+.form,
+.contact__form,
+.order__form {
+    max-width: 100%;
+    overflow: hidden;
+}
