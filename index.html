@@ -663,13 +663,68 @@ footer {
     border-top: 1px solid #1e2a4a;
 }
 
-@media (max-width: 700px) {
-    .form-row {
-        flex-direction: column;
-    }
-    nav ul {
-        gap: 15px;
-    }
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;            /* уменьшаем заголовок */
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  .btn-primary {
+    padding: 12px 25px;
+    font-size: 0.95rem;
+  }
+  .nav-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  nav ul {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .services-grid,
+  .works-grid,
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+  .work-card img {
+    height: 160px;
+  }
+  .review-card {
+    max-width: 100%;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .order-form,
+  .review-form {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  .container {
+    padding: 0 15px;
+  }
+  /* чтобы текст не вылезал */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  textarea {
+    resize: vertical;
+    max-width: 100%;
+  }
+  input, select, textarea {
+    font-size: 16px;  /* чтобы не зумилось на iOS */
+  }
 }
     </style>
 </head>
