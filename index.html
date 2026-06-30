@@ -663,214 +663,28 @@ footer {
     border-top: 1px solid #1e2a4a;
 }
 
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;            /* уменьшаем заголовок */
-    line-height: 1.2;
-  }
-  .subtitle {
-    font-size: 1rem;
-    padding: 0 10px;
-  }
-  .btn-primary {
-    padding: 12px 25px;
-    font-size: 0.95rem;
-  }
-  .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  nav ul {
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .services-grid,
-  .works-grid,
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .works-grid {
-    grid-template-columns: 1fr;
-  }
-  .work-card img {
-    height: 160px;
-  }
-  .review-card {
-    max-width: 100%;
-  }
-  .form-row {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .order-form,
-  .review-form {
-    max-width: 100%;
-    padding: 0 15px;
-  }
-  .container {
-    padding: 0 15px;
-  }
-  /* чтобы текст не вылезал */
-  * {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-  textarea {
-    resize: vertical;
-    max-width: 100%;
-  }
-  input, select, textarea {
-    font-size: 16px;  /* чтобы не зумилось на iOS */
-  }
-}
-/* Убираем горизонтальный скролл везде */
-body {
-  overflow-x: hidden;
-}
-.container {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Навигация на мобилках — без скролла */
-@media (max-width: 768px) {
-  .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-  nav a {
-    white-space: nowrap;
-  }
-
-  /* Карточки портфолио и модалка */
-  .works-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .work-card img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-  }
-  .modal-content {
-    width: 95%;
-    max-width: 95vw;
-    overflow-x: hidden;
-    padding: 15px;
-  }
-  .modal-slider img {
-    max-height: 200px;
-    width: 100%;
-    object-fit: contain;
-  }
-  .slider-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 1.5rem;
-  }
-
-  /* Формы */
-  .order-form,
-  .review-form {
-    max-width: 100%;
-    padding: 0 10px;
-  }
-  .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-  input, select, textarea {
-    font-size: 16px; /* чтобы не зумилось на iOS */
-    max-width: 100%;
-  }
-}
-/* ========== Адаптивность (мобильные) ========== */
-@media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
-  .container {
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .subtitle {
-    font-size: 1rem;
-    padding: 0 10px;
-  }
-  .btn-primary {
-    padding: 12px 25px;
-    font-size: 0.95rem;
-  }
-
-  .nav-bar {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-  nav a {
-    white-space: nowrap;
-  }
-
-  .services-grid,
-  .works-grid,
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  .work-card img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-  }
-
-  .modal-content {
-    width: 95%;
-    max-width: 95vw;
-    overflow-x: hidden;
-    padding: 15px;
-  }
-  .modal-slider img {
-    max-height: 200px;
-    width: 100%;
-    object-fit: contain;
-  }
-  .slider-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 1.5rem;
-  }
-
-  .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-  .order-form,
-  .review-form {
-    max-width: 100%;
-    padding: 0 10px;
-  }
-  input, select, textarea {
-    font-size: 16px;
-    max-width: 100%;
-  }
+/* ========== Адаптивность ========== */
+@media (max-width: 700px) {
+    .form-row {
+        flex-direction: column;
+    }
+    nav ul {
+        gap: 15px;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .services-grid,
+    .works-grid {
+        grid-template-columns: 1fr;
+    }
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .modal-slider img {
+        max-height: 200px;
+    }
 }
     </style>
 </head>
